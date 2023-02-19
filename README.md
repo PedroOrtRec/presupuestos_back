@@ -11,6 +11,10 @@ Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el sig
     "password": "password"
 }
 
+VER LOS GRUPOS DE UN USUARIO
+
+Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que indiquemos en la ruta
+
 // TODO //
 
 - MODIFICAR USUARIOS

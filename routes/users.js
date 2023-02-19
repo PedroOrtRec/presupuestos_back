@@ -16,4 +16,6 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
+router.use('/groups', require('./users/groups'));
+
 module.exports = router;
