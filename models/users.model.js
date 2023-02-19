@@ -17,6 +17,12 @@ const updateUser = (userId, { userName, userEmail, password }) => {
     )
 }
 
+const deleteUser = (userId) => {
+    return db.query(
+        'DELETE FROM users WHERE userId = ?', [userId]
+    )
+}
+
 
 module.exports = {
     getUserById, createUser, getUserByEmail, updateUser
