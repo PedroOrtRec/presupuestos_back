@@ -16,4 +16,12 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+// router.put('/:userId', async (req, res) => {
+
+// });
+
+// router.delete('/:userId', async (req, res) => {
+
+// })
+
 module.exports = router;

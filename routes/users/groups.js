@@ -8,7 +8,7 @@ router.get('/:userId', async (req, res) => {
     try {
         const [groups] = await getGroupsByUserId(userId);
         if (groups.length === 0) {
-            res.json({ fatal: 'No hay grupos' });
+            res.json({ fatal: 'No hay grupos o el usuario no existe' });
         }
         res.json(groups[0]);
     } catch (error) {
