@@ -70,33 +70,33 @@ INSERT INTO `groups_has_users` VALUES (1,2,'admin',12.32),(1,3,'viewer',-20.00),
 UNLOCK TABLES;
 
 --
--- Table structure for table `payment`
+-- Table structure for table `slices`
 --
 
-DROP TABLE IF EXISTS `payment`;
+DROP TABLE IF EXISTS `slices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `payment` (
-  `paymentId` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `slices` (
+  `sliceId` int NOT NULL AUTO_INCREMENT,
   `groupId` int NOT NULL,
   `userId` int NOT NULL,
   `description` varchar(150) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`paymentId`),
-  UNIQUE KEY `paymentId_UNIQUE` (`paymentId`),
+  PRIMARY KEY (`sliceId`),
+  UNIQUE KEY `paymentId_UNIQUE` (`sliceId`),
   KEY `groupId_idx` (`groupId`),
   KEY `userId_idx` (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `payment`
+-- Dumping data for table `slices`
 --
 
-LOCK TABLES `payment` WRITE;
-/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,1,2,'langostinos',24.68),(2,1,4,'jamon',15.36);
-/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+LOCK TABLES `slices` WRITE;
+/*!40000 ALTER TABLE `slices` DISABLE KEYS */;
+INSERT INTO `slices` VALUES (1,1,2,'langostinos',24.68),(2,1,4,'jamon',15.36);
+/*!40000 ALTER TABLE `slices` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -137,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-19 13:01:30
+-- Dump completed on 2023-02-19 17:30:04
