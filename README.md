@@ -3,6 +3,16 @@
 Recuerda que tienes que instalar el node_modules y crear un archivo .env con tus variables de entorno para conectar con la base de datos. Voy a adjutar el modelo de la base de datos para que la generes en tu ordenador.
 
 
+-- SISTEMA DE ARCHIVOS Y CARPETAS --
+
+-INDEX.JS : ENTRADA A NUESTRA APLICACIÓN
+-LOGIN.JS : ESTE ARCHIVO SE ENCARGARÁ DE REGISTRAR Y LOGUEAR USUARIOS Y SUMINISTRAR TOKENS
+-USER.JS : ESTE ARCHIVO ES LA ENTRADA AL AREA DEL CLIENTE, PEDIRÁ EL TOKEN
+-CARPETA USER: EN ESTA CARPETA ENCONTRAMOS EL HOME.JS, DONDE SE VE O MODIFICA EL USUARIO, EL GROUPS.JS DONDE SE ADMINISTRAN LOS GRUPOS, TAMBIÉN DEBERÍA PEDIR TOKEN PARA VER EL ROL, Y EL SOCIAL, DONDE SE ADMINISTRARÁ EL TEMA DEL CHAT. 
+-?? DENTRO DE LA CARPETA GRUPOS APARECE EL ARCHIVO SLICE.JS (SE SUPONE QUE DEBE SERVIR PARA ADMINISTRAR LOS SLICES DE CADA GRUPO)
+-?? DENTRO DE LA CARPETA SOCIAL, EL ARCHIVO CHAT.JS DEBERÍA ADMINISTRAR EL CHAT. (DEBERÍA HABER UNA BASE DE DATOS MONGODB)
+
+
 -- REGISTRAR UN USUARIO --
 
 Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el siguiente objeto:
@@ -12,10 +22,29 @@ Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el sig
     "password": "password"
 }
 
+-- LOGUEAR UN USUARIO --
+
+-- VER LA INFO DE UN USUARIO --
+
+-- MODIFICAR UN USUARIO --
+
+-- BORRAR UN USUARIO --
+
 --VER LOS GRUPOS DE UN USUARIO--
 
 Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 
+-- CREAR UN GRUPO --
+
+-- MODIFICAR UN GRUPO --
+
+-- BORRAR UN GRUPO --
+
+-- AÑADIR UN SLICE A UN GRUPO --
+
+-- BORRAR UN SLICE --
+
+-- MODIFICAR UN SLICE --
 
 // TODO //
 
