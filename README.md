@@ -3,7 +3,8 @@
 Recuerda que tienes que instalar el node_modules y crear un archivo .env con tus variables de entorno para conectar con la base de datos. Voy a adjutar el modelo de la base de datos para que la generes en tu ordenador.
 
 
-REGISTRAR UN USUARIO
+-- REGISTRAR UN USUARIO --
+
 Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el siguiente objeto:
 {
     "userName": "name",
@@ -11,9 +12,10 @@ Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el sig
     "password": "password"
 }
 
-VER LOS GRUPOS DE UN USUARIO
+--VER LOS GRUPOS DE UN USUARIO--
 
-Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que indiquemos en la ruta
+Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
+
 
 // TODO //
 
