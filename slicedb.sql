@@ -109,9 +109,11 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `userId` int NOT NULL AUTO_INCREMENT,
   `userName` varchar(30) NOT NULL,
+  `userSurname` varchar(55) NOT NULL,
   `userEmail` varchar(45) NOT NULL,
+  `userPhone` varchar(45) NOT NULL,
   `registreTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `userId_UNIQUE` (`userId`),
   UNIQUE KEY `userEmail_UNIQUE` (`userEmail`)
@@ -124,7 +126,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'Pedro','Primero','2023-02-14 20:35:21','ireiu4'),(3,'Lucia','Segovia','2023-02-14 23:35:50','burululu'),(4,'Marta','Mendonza','2023-02-14 23:35:50','cucume878'),(5,'Carlos','Olmedo','2023-02-14 23:35:50','rarmel10'),(6,'Miguel','Torres','2023-02-14 23:35:50','jilopq1'),(7,'Antonio','ant@terra.es','2023-02-16 22:51:36','787878');
+INSERT INTO `users` VALUES (2,'Pedro','Molina','ped@mail.es','678676767','2023-02-14 20:35:21','ireiu4'),(3,'Lucia','Vergara','luci99@outlook.com','655437812','2023-02-14 23:35:50','burululu'),(4,'Marta','Naranjo','martammt@hotmail.es','644909122','2023-02-14 23:35:50','cucume878'),(5,'Carlos','Sainz','charlywe@gmail.com','667212112','2023-02-14 23:35:50','rarmel10'),(6,'Miguel','Noguera','miguelTorres@outlook.com','632908656','2023-02-14 23:35:50','jilopq1'),(7,'Antonio','Bermúdez','ant@terra.es','670498919','2023-02-16 22:51:36','787878');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -137,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-19 17:30:04
+-- Dump completed on 2023-02-23 18:39:41

@@ -15,14 +15,23 @@ Recuerda que tienes que instalar el node_modules y crear un archivo .env con tus
 
 -- REGISTRAR UN USUARIO --
 
-Se registra un usuario haciendo un POST sobre la ruta /login y pásandole el siguiente objeto:
+Se registra un usuario haciendo un POST sobre la ruta /login/register y pásandole el siguiente objeto:
 {
     "userName": "name",
+    "userSurname": "surname",
     "userEmail": "email",
+    "userPhone": "phone",
     "password": "password"
 }
 
 -- LOGUEAR UN USUARIO --
+
+Se loguea un usuario haciendo un POST sobre la ruta /logn y pasándole el siguiente objeto:
+
+{
+    "userEmail": "email",
+    "password": "password"
+}
 
 -- VER LA INFO DE UN USUARIO --
 
