@@ -1,14 +1,23 @@
 ###
-GET http://localhost:3000/users/home/3
+GET http://localhost:3000/users/home/9
 
 ###
 POST http://localhost:3000/login/register
 Content-Type: application/json
 
 {
-    "userName": "Antonio",
-    "userSurname": "Madeira",
-    "userEmail": "ant@terra.es",
-    "userPhone": "698898989",
-    "password": "787878"
+    "userName": "Alfonso",
+    "userSurname": "Zambrano",
+    "userEmail": "alfzamb@terra.es",
+    "userPhone": "677565455",
+    "password": "porquepor"
+}
+
+###
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userEmail": "alfzamb@terra.es",
+    "password": "porquepor"
 }

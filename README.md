@@ -26,7 +26,7 @@ Se registra un usuario haciendo un POST sobre la ruta /login/register y pásando
 
 -- LOGUEAR UN USUARIO --
 
-Se loguea un usuario haciendo un POST sobre la ruta /logn y pasándole el siguiente objeto:
+Puedes ver la información de un usuario a través de su id y pasándo la contraseña correcta haciendo un POST sobre la ruta /login y pasándole el siguiente objeto:
 
 {
     "userEmail": "email",
@@ -35,13 +35,16 @@ Se loguea un usuario haciendo un POST sobre la ruta /logn y pasándole el siguie
 
 -- VER LA INFO DE UN USUARIO --
 
+Puedes ver la información de un usuario a través de su id haciendo un GET en users/home/:userId
+
+
 -- MODIFICAR UN USUARIO --
 
--- BORRAR UN USUARIO --
+-- // BORRAR UN USUARIO --
 
 --VER LOS GRUPOS DE UN USUARIO--
 
-Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
+Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 
 -- CREAR UN GRUPO --
 

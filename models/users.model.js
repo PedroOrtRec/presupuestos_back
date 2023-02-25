@@ -7,7 +7,7 @@ const getUserByEmail = (userEmail) => {
 }
 
 const createUser = ({ userName, userSurname, userEmail, userPhone, password }) => {
-    return db.query('INSERT INTO users (userName, userSurname, userEmail, userPhone, password) VALUES (?, ?, ?)', [userName, userSurname, userEmail, userPhone, password])
+    return db.query('INSERT INTO users (userName, userSurname, userEmail, userPhone, password) VALUES (?, ?, ?, ?, ?)', [userName, userSurname, userEmail, userPhone, password])
 }
 
 const updateUser = (userId, { userName, userSurname, userEmail, userPhone, password }) => {

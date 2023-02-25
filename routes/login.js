@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const [users] = await getUserByEmail(req.body.userEmail);
-    if (user.length === 0) {
+    if (users.length === 0) {
         return res.json({ fatal: 'Usuario y/o contraseña incorrectos' })
     }
 
