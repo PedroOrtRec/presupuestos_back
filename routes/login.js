@@ -10,7 +10,10 @@ router.post('/register', async (req, res) => {
         req.body.password = bcrypt.hashSync(req.body.password, 8);
         const [result] = await createUser(req.body)
         const [user] = await getUserById(result.insertId);
-        res.json(user[0]);
+        res.json({
+            succes: user[0],
+            token: createToken(user[0])
+        });
     } catch (error) {
         res.json({ fatal: error.message })
     }

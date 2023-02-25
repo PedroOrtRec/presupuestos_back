@@ -16,6 +16,20 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    const { userId } = req.user;
+    console.log(userId)
+    try {
+        const [user] = await getUserById(userId);
+        if (user.length === 0) {
+            res.json({ fatal: 'Este usuario no existe' });
+        }
+        res.json(user[0]);
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
 // router.put('/:userId', async (req, res) => {
 
 // });

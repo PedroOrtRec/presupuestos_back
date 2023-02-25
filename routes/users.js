@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
-router.use('/home', require('./users/home'));
+const { checkToken } = require('../helpers/middlewares')
 
-router.use('/groups', require('./users/groups'));
+router.use('/home', checkToken, require('./users/home'));
+
+router.use('/groups', checkToken, require('./users/groups'));
 
 module.exports = router;

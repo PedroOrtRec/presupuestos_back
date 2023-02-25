@@ -16,4 +16,18 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    const { userId } = req.user;
+
+    try {
+        const [groups] = await getGroupsByUserId(userId);
+        if (groups.length === 0) {
+            res.json({ fatal: 'No hay grupos' });
+        }
+        res.json(groups);
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
 module.exports = router;
