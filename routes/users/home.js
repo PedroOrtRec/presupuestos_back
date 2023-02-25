@@ -2,19 +2,19 @@ const { getUserById } = require('../../models/users.model');
 
 const router = require('express').Router();
 
-router.get('/:userId', async (req, res) => {
-    const { userId } = req.params;
+// router.get('/:userId', async (req, res) => {
+//     const { userId } = req.params;
 
-    try {
-        const [user] = await getUserById(userId);
-        if (user.length === 0) {
-            res.json({ fatal: 'Este usuario no existe' });
-        }
-        res.json(user[0]);
-    } catch (error) {
-        res.json({ fatal: error.message })
-    }
-});
+//     try {
+//         const [user] = await getUserById(userId);
+//         if (user.length === 0) {
+//             res.json({ fatal: 'Este usuario no existe' });
+//         }
+//         res.json(user[0]);
+//     } catch (error) {
+//         res.json({ fatal: error.message })
+//     }
+// });
 
 router.get('/', async (req, res) => {
     const { userId } = req.user;
@@ -29,13 +29,5 @@ router.get('/', async (req, res) => {
         res.json({ fatal: error.message })
     }
 });
-
-// router.put('/:userId', async (req, res) => {
-
-// });
-
-// router.delete('/:userId', async (req, res) => {
-
-// })
 
 module.exports = router;

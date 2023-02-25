@@ -41,7 +41,7 @@ te genera un token
 
 Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información con un GET en /users/home
 
-Si comentas el middleware de checkToken en el router para home de users.js, puedes ver la información de un usuario a través de su id haciendo un GET en users/home/:userId
+si descomentas esta función y comentas el middleware de checkToken en el router para home de users.js, puedes ver la información de un usuario a través de su id haciendo un GET en users/home/:userId
 
 
 -- MODIFICAR UN USUARIO --
@@ -52,7 +52,7 @@ Si comentas el middleware de checkToken en el router para home de users.js, pued
 
 Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información de todos sus grupos haciendo un GET sobre users/groups
 
-Si comentas el middleware de checkCtoen en el router para groups de users.js, Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
+Si descomentas esta función y comentas el middleware de checkToken en el router para groups de users.js, Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 
 -- CREAR UN GRUPO --
 
