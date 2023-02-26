@@ -50,7 +50,7 @@ si descomentas esta función y comentas el middleware de checkToken en el router
 
 --VER LOS GRUPOS DE UN USUARIO--
 
-Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información de todos sus grupos haciendo un GET sobre users/groups
+Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información de todos sus grupos haciendo un GET sobre users/groups. Además, por cada grupo, te devuelve un array con los participantes y su id.
 
 Si descomentas esta función y comentas el middleware de checkToken en el router para groups de users.js, Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 

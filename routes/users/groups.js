@@ -1,4 +1,5 @@
 const { getGroupsByUserId } = require('../../models/groups.model');
+const { getUsersByGroupId } = require('../../models/users.model');
 
 const router = require('express').Router();
 
@@ -24,11 +25,20 @@ router.get('/', async (req, res) => {
         if (groups.length === 0) {
             res.json({ fatal: 'No hay grupos' });
         }
+
+        for (let group of groups) {
+            const [players] = await getUsersByGroupId(group.groupId);
+            group.players = players;
+        }
+
         res.json(groups);
     } catch (error) {
         res.json({ fatal: error.message })
     }
 });
+
+//TODO DATOS DEL GRUPO
+//ahora tiene que recuperar cada usuario que está en ese grupo, por lo que hay que hacer un busqueda por id del grupo en GROUPS_HAS_USERS y guardar en un array los datos de los participantes)
 
 //TODO CREAR UN GRUPO NUEVO
 
