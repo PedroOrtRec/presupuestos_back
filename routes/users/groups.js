@@ -1,4 +1,5 @@
-const { getGroupsByUserId } = require('../../models/groups.model');
+const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
+const { addOneUserToGroup } = require('../../models/groups_has_users.model');
 const { getUsersByGroupId } = require('../../models/users.model');
 
 const router = require('express').Router();
@@ -37,16 +38,32 @@ router.get('/', async (req, res) => {
     }
 });
 
-//TODO DATOS DEL GRUPO
-//ahora tiene que recuperar cada usuario que está en ese grupo, por lo que hay que hacer un busqueda por id del grupo en GROUPS_HAS_USERS y guardar en un array los datos de los participantes)
+router.post('/new', async (req, res) => {
+    //Primero declaro dos variables que voy a necesitar para incluir al usuario creador del grupo como administrador del grupo creado, el userRol como 'admin' y el userId del usuario creador 
+    const userRol = 'admin';
+    const { userId } = req.user;
+    try {
+        //Ahora creo el grupo
+        const [result] = await createGroup(req.body);
+        //Y extraigo la id del grupo recién creado
+        const groupId = result.insertId;
+        //Y ahora añado el usuario con una debtAmount inicial de 0.00
+        const debtAmount = 0.00;
+        const [added] = await addOneUserToGroup(userRol, { groupId, userId, debtAmount });
+        //Y ahora construyo la respuesta con el grupo y su usuario
+        const [group] = await getGroupById(groupId);
+        const [admin] = await getUsersByGroupId(groupId);
+        group[0].admin = admin;
+        res.json(group);
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
 
 //TODO CREAR UN GRUPO NUEVO
 
-//TIENE QUE INSERTAR lOS DATOS DEL GRUPO Y TANTOS GROUPS_HAS_USERS COMO USUARIOS META EN EL BODY. POR LO QUE TIENE QUE RECOGER LOS DATOS DEL BODY Y EXTRAER LA ID DE ESOS USUARIOS. TIENE QUE DARLE A TODOS ESOS USUARIOS EL ROL DE VIEWER Y POR ÚLTIMO, TIENE QUE METERSE A SÍ MISMO CON EL ROL DE ADMIN
-
-// router.post('/new', async (req, res) => {
-
-// });
+// ya crea los parametros que tiene la tabla grupo, pero ahora tiene que insertarse a si mismo como admin. por lo que hay que hacer un modelo de insertar un groups_has_users
 
 
 

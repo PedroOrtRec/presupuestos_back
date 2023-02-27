@@ -56,6 +56,15 @@ Si descomentas esta función y comentas el middleware de checkToken en el router
 
 -- CREAR UN GRUPO --
 
+Se puede crear un grupo en la ruta users/groups/new pasándole un objeto:
+
+{
+    "groupTitle": "title",
+    "groupDescription": "description"
+}
+
+y al crearlo añade como administrado al usuario que indique el token de la cabecera necesaria para entrar en users. La api responde con los datos del grupo y los datos del administrador.
+
 -- MODIFICAR UN GRUPO --
 
 -- BORRAR UN GRUPO --
