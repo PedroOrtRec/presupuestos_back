@@ -11,6 +11,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6
 Content-Type: application/json
 
 {
-    "groupTitle": "Excursión",
-    "groupDescription": ""
+    "groupTitle": "Nuevo grupo",
+    "groupDescription": "De prueba"
+}
+
+###
+POST http://localhost:3000/users/groups/10/addUser
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODQzOTIwMSwiaWF0IjoxNjc3NTc1MjAxfQ.b6jjC4252ILJmf1jZBwWrcXW4DSmIj1OBRdxrG0FfLw
+Content-Type: application/json
+
+{
+    "userId": "7"
 }

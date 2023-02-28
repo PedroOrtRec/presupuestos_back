@@ -44,9 +44,10 @@ Pasando una cabecera authorization: con el token actualizado de un usuario, pued
 si descomentas esta función y comentas el middleware de checkToken en el router para home de users.js, puedes ver la información de un usuario a través de su id haciendo un GET en users/home/:userId
 
 
--- MODIFICAR UN USUARIO --
+-- // MODIFICAR UN USUARIO --
 
 -- // BORRAR UN USUARIO --
+
 
 --VER LOS GRUPOS DE UN USUARIO--
 
@@ -64,6 +65,16 @@ Se puede crear un grupo en la ruta users/groups/new pasándole un objeto:
 }
 
 y al crearlo añade como administrado al usuario que indique el token de la cabecera necesaria para entrar en users. La api responde con los datos del grupo y los datos del administrador.
+
+-- AÑADIR UN USUARIO A UN GRUPO --
+
+Se puede añadir un nuevo usuario a un grupo en la ruta users/groups/:groupId/addUser. Se necesita token, introducir por parámetro la id del grupo y en elbody la id del usuario en un objeto:
+
+{
+    "userId": "id"
+}
+
+Devuelve la información del grupo con todos sus usuarios
 
 -- MODIFICAR UN GRUPO --
 

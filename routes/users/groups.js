@@ -61,17 +61,25 @@ router.post('/new', async (req, res) => {
 });
 
 router.post('/:groupId/addUser', async (req, res) => {
-    let { userId } = req.user;
     const { groupId } = req.params;
+    const { userId } = req.user;
     try {
-        const adminRol = await getRolByUserId({ userId, groupId })
-        if (adminRol !== 'admin') {
+        const [admin] = await getRolByUserId({ userId, groupId })
+        const { userRol } = admin[0];
+        if (userRol !== 'admin') {
             res.json({ fatal: 'No eres administrador de este grupo' })
+        } else {
+            const userRol = 'viewer';
+            const { userId } = req.body;
+            const debtAmount = 0.00;
+            const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount });
+            //Lo siguiente es lo mismo que arriba, lo tengo que meter en una función
+            const [group] = await getGroupById(groupId);
+            const [users] = await getUsersByGroupId(groupId);
+            group[0].users = users;
+            res.json(group);
+            //ESTO NO IMPIDE QUE SE AGREGUE UNA Y OTRA VEZ EL MISMO USUARIO
         }
-        const userRol = 'viewer';
-        let { userId } = req.body;
-        const debtAmount = 0.00;
-        const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount })
     } catch (error) {
         res.json({ fatal: error.message })
     }
