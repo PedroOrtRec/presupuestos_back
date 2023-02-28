@@ -24,26 +24,46 @@ Se registra un usuario haciendo un POST sobre la ruta /login/register y pásando
     "password": "password"
 }
 
+te genera un token
+
 -- LOGUEAR UN USUARIO --
 
-Se loguea un usuario haciendo un POST sobre la ruta /logn y pasándole el siguiente objeto:
+Puedes ver la información de un usuario a través de su id y pasándo la contraseña correcta haciendo un POST sobre la ruta /login y pasándole el siguiente objeto:
 
 {
     "userEmail": "email",
     "password": "password"
 }
 
+te genera un token
+
 -- VER LA INFO DE UN USUARIO --
+
+Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información con un GET en /users/home
+
+si descomentas esta función y comentas el middleware de checkToken en el router para home de users.js, puedes ver la información de un usuario a través de su id haciendo un GET en users/home/:userId
+
 
 -- MODIFICAR UN USUARIO --
 
--- BORRAR UN USUARIO --
+-- // BORRAR UN USUARIO --
 
 --VER LOS GRUPOS DE UN USUARIO--
 
-Con la ruta GET http://localhost:3000/users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
+Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información de todos sus grupos haciendo un GET sobre users/groups. Además, por cada grupo, te devuelve un array con los participantes y su id.
+
+Si descomentas esta función y comentas el middleware de checkToken en el router para groups de users.js, Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 
 -- CREAR UN GRUPO --
+
+Se puede crear un grupo en la ruta users/groups/new pasándole un objeto:
+
+{
+    "groupTitle": "title",
+    "groupDescription": "description"
+}
+
+y al crearlo añade como administrado al usuario que indique el token de la cabecera necesaria para entrar en users. La api responde con los datos del grupo y los datos del administrador.
 
 -- MODIFICAR UN GRUPO --
 

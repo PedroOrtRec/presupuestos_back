@@ -10,7 +10,10 @@ router.post('/register', async (req, res) => {
         req.body.password = bcrypt.hashSync(req.body.password, 8);
         const [result] = await createUser(req.body)
         const [user] = await getUserById(result.insertId);
-        res.json(user[0]);
+        res.json({
+            succes: user[0],
+            token: createToken(user[0])
+        });
     } catch (error) {
         res.json({ fatal: error.message })
     }
@@ -18,7 +21,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const [users] = await getUserByEmail(req.body.userEmail);
-    if (user.length === 0) {
+    if (users.length === 0) {
         return res.json({ fatal: 'Usuario y/o contraseña incorrectos' })
     }
 
