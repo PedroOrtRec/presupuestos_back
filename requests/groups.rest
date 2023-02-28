@@ -11,6 +11,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6
 Content-Type: application/json
 
 {
-    "groupTitle": "Gastos de la comunidad",
-    "groupDescription": "calle suspiro 22"
+    "groupTitle": "Excursión",
+    "groupDescription": ""
 }

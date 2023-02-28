@@ -1,5 +1,5 @@
 const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
-const { addOneUserToGroup } = require('../../models/groups_has_users.model');
+const { addOneUserToGroup, getRolByUserId } = require('../../models/groups_has_users.model');
 const { getUsersByGroupId } = require('../../models/users.model');
 
 const router = require('express').Router();
@@ -49,7 +49,7 @@ router.post('/new', async (req, res) => {
         const groupId = result.insertId;
         //Y ahora añado el usuario con una debtAmount inicial de 0.00
         const debtAmount = 0.00;
-        const [added] = await addOneUserToGroup(userRol, { groupId, userId, debtAmount });
+        const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount });
         //Y ahora construyo la respuesta con el grupo y su usuario
         const [group] = await getGroupById(groupId);
         const [admin] = await getUsersByGroupId(groupId);
@@ -60,11 +60,21 @@ router.post('/new', async (req, res) => {
     }
 });
 
-
-//TODO CREAR UN GRUPO NUEVO
-
-// ya crea los parametros que tiene la tabla grupo, pero ahora tiene que insertarse a si mismo como admin. por lo que hay que hacer un modelo de insertar un groups_has_users
-
-
+router.post('/:groupId/addUser', async (req, res) => {
+    let { userId } = req.user;
+    const { groupId } = req.params;
+    try {
+        const adminRol = await getRolByUserId({ userId, groupId })
+        if (adminRol !== 'admin') {
+            res.json({ fatal: 'No eres administrador de este grupo' })
+        }
+        const userRol = 'viewer';
+        let { userId } = req.body;
+        const debtAmount = 0.00;
+        const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount })
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
 
 module.exports = router;
