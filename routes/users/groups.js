@@ -85,4 +85,6 @@ router.post('/:groupId/addUser', async (req, res) => {
     }
 })
 
+// router.use('/:groupId/slice', )
+
 module.exports = router;

@@ -11,8 +11,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6
 Content-Type: application/json
 
 {
-    "groupTitle": "Nuevo grupo",
-    "groupDescription": "De prueba"
+    "groupTitle": "Nuevo grupo"
 }
 
 ###
@@ -21,5 +20,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6
 Content-Type: application/json
 
 {
-    "userId": "7"
+    "userId": "6"
 }

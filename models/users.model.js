@@ -7,7 +7,7 @@ const getUserByEmail = (userEmail) => {
 }
 
 const getUsersByGroupId = (groupId) => {
-    return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "player" FROM users AS u INNER JOIN groups_has_users AS tbi ON u.userId = tbi.userId INNER JOIN dbgroups AS g ON tbi.groupId = g.groupId WHERE g.groupId = ? GROUP BY tbi.userId', [groupId])
+    return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "player", tbi.userRol FROM users AS u INNER JOIN groups_has_users AS tbi ON u.userId = tbi.userId INNER JOIN dbgroups AS g ON tbi.groupId = g.groupId WHERE g.groupId = ? GROUP BY tbi.userId', [groupId])
 }
 
 const createUser = ({ userName, userSurname, userEmail, userPhone, password }) => {
