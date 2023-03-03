@@ -1,3 +1,4 @@
+const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
 const { addOneUserToGroup, getRolByUserId } = require('../../models/groups_has_users.model');
 const { getUsersByGroupId } = require('../../models/users.model');
@@ -83,8 +84,8 @@ router.post('/:groupId/addUser', async (req, res) => {
     } catch (error) {
         res.json({ fatal: error.message })
     }
-})
+});
 
-// router.use('/:groupId/slice', )
+router.use('/:groupId/slices', checkGroups, require('./groups/slices'));
 
 module.exports = router;

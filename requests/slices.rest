@@ -1,0 +1,3 @@
+###
+GET http://localhost:3000/users/groups/1/slices
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODYzNDQxNiwiaWF0IjoxNjc3NzcwNDE2fQ.cVdLqTl8mi9lVi4hCySjMhR3dNHvNIjYqr00oin8ciM

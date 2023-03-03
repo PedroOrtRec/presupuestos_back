@@ -1,4 +1,4 @@
-const getSliceByGroupId = (groupId) => {
+const getSlicesByGroupId = (groupId) => {
     return db.query('SELECT * FROM slices WHERE groupId = ?', [groupId])
 }
 
@@ -16,4 +16,8 @@ const createSlice = ({ groupId, userId, description, amount }) => {
 
 const deleteSlice = (sliceId) => {
     return db.query('DELETE FROM slices WHERE sliceId =?', [sliceId])
+}
+
+module.exports = {
+    getSlicesByGroupId, createSlice
 }

@@ -22,4 +22,10 @@ const checkToken = async (req, res, next) => {
     next();
 }
 
-module.exports = { checkToken }
+const checkGroups = async (req, res, next) => {
+    const groupId = req.params;
+    req.groupId = groupId;
+    next();
+}
+
+module.exports = { checkToken, checkGroups }
