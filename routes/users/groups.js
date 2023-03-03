@@ -1,7 +1,7 @@
 const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
 const { addOneUserToGroup, getRolByUserId } = require('../../models/groups_has_users.model');
-const { getUsersByGroupId } = require('../../models/users.model');
+const { getUsersByGroupId, getUserByEmail, getUserByPhone } = require('../../models/users.model');
 
 const router = require('express').Router();
 
@@ -81,6 +81,24 @@ router.post('/:groupId/addUser', async (req, res) => {
             res.json(group);
             //ESTO NO IMPIDE QUE SE AGREGUE UNA Y OTRA VEZ EL MISMO USUARIO
         }
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
+router.post('/:groupId/invitation', async (req, res) => {
+    const { groupId } = req.params;
+    const { userId } = req.users;
+    const { userEmail } = req.body;
+    const { userPhone } = req.body;
+    try {
+        if (userEmail) {
+            const [userInvited] = await getUserByEmail(userEmail)
+        } else if (userPhone) {
+            const [userInvited] = await getUserByPhone(userPhone)
+        }
+        const invitedId = userInvited.insertId;
+        const [invitation] = await sendInvitation({ invitedId, userId, groupId });
     } catch (error) {
         res.json({ fatal: error.message })
     }

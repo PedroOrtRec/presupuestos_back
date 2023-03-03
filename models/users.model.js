@@ -6,6 +6,10 @@ const getUserByEmail = (userEmail) => {
     return db.query('SELECT * FROM users WHERE userEmail = ?', [userEmail])
 }
 
+const getUserByPhone = (userPhone) => {
+    return db.query('SELECT * FROM users WHERE userPhone = ?,'[userPhone])
+}
+
 const getUsersByGroupId = (groupId) => {
     return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "player", tbi.userRol FROM users AS u INNER JOIN groups_has_users AS tbi ON u.userId = tbi.userId INNER JOIN dbgroups AS g ON tbi.groupId = g.groupId WHERE g.groupId = ? GROUP BY tbi.userId', [groupId])
 }
@@ -29,5 +33,5 @@ const deleteUser = (userId) => {
 
 
 module.exports = {
-    getUserById, createUser, getUserByEmail, updateUser, getUsersByGroupId
+    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone
 }
