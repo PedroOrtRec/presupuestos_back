@@ -6,8 +6,14 @@ const getRolByUserId = ({ userId, groupId }) => {
     return db.query('SELECT tbi.userRol FROM groups_has_users AS tbi WHERE userId = ? AND groupId = ?', [userId, groupId])
 }
 
+const getDebtAmountByUserId = () => {
 
+}
+
+const updateDebtAmount = () => {
+
+}
 
 module.exports = {
-    addOneUserToGroup, getRolByUserId
+    addOneUserToGroup, getRolByUserId, getDebtAmountByUserId, updateDebtAmount
 }

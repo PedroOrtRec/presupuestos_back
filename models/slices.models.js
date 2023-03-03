@@ -7,11 +7,11 @@ const getSliceById = (sliceId) => {
 }
 
 const updateSlice = (sliceId, { groupId, userId, description, amount }) => {
-    return db.query('UPDATE slice SET groupId = ?, userId = ?, description = ?, amount = ? WHERE sliceId = ?', [userId, groupId, description, amount, sliceId])
+    return db.query('UPDATE slice SET groupId = ?, description = ?, amount = ? WHERE sliceId = ?', [groupId, description, amount, sliceId])
 }
 
-const createSlice = ({ groupId, userId, description, amount }) => {
-    return db.query('INSERT INTO slices (groupId, userId, description, amount) VALUES (?, ?, ?, ?)', [groupId, userId, description, amount])
+const createSlice = ({ groupId, description, amount }) => {
+    return db.query('INSERT INTO slices (groupId, description, amount) VALUES (?, ?, ?)', [groupId, description, amount])
 }
 
 const deleteSlice = (sliceId) => {
