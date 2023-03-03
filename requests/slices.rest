@@ -1,3 +1,15 @@
 ###
 GET http://localhost:3000/users/groups/1/slices
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODYzNDQxNiwiaWF0IjoxNjc3NzcwNDE2fQ.cVdLqTl8mi9lVi4hCySjMhR3dNHvNIjYqr00oin8ciM
+
+###
+POST http://localhost:3000/users/groups/15/slices/add
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODcyMjU1MSwiaWF0IjoxNjc3ODU4NTUxfQ.MKcGfZrRQL-C7NnHjMQRtZjxEhc726U9lScM6tNFAdU
+Content-Type: application/json
+
+{
+    "description" : "Primer Slice de Prueba",
+    "amount" : "100",
+    "userId" : "6",
+    "usersDebtors" : [7, 9, 10]
+}

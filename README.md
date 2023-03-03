@@ -80,7 +80,19 @@ Devuelve la información del grupo con todos sus usuarios
 
 -- BORRAR UN GRUPO --
 
--- AÑADIR UN SLICE A UN GRUPO --
+-- CREAR UN SLICE --
+
+Se puede crear un slice haciendo una petición post a la ruta users/groups/:groupId/slices/add, teniendo token y pasándole el siguiente objeto:
+
+{
+        "description" : "description",
+    "amount" : "amount",
+    "userId" : "userId",
+    "usersDebtors" : [array of usersId]
+
+}
+
+Esto devuelve un array con los usuarios del grupo con su nueva deuda
 
 -- BORRAR UN SLICE --
 
@@ -89,13 +101,11 @@ Devuelve la información del grupo con todos sus usuarios
 // TODO //
 
 - CREAR, BORRAR Y MODIFICAR GRUPOS
-- CREAR, BORRAR Y MODIFICAR PAGOS
-- MODIFICAR GRUPOS TIENEN USUARIOS PARA AÑADIR LA DEUDA
-- OBTENER Y MODIFICA LA DEUDA
+- BORRAR Y MODIFICAR PAGOS
 
 - EN QUÉ MOMENTO PASAMOS EL ROL DEL USUARIO PARA SABER SI ES ADMIN DEL GRUPO Y QUE LE APAREZCAN COMPONENTES EN EL FRONT
 
 
 - HAY QUE PREGUNTARLE AL PROFESOR SI EL MIDDLEWARE PARA RECOGER EL PARAMETRO INNACESIBLE EN SLICES SE PUEDE HACER
-- VOY A HACER UN FUNCIÓN LOCA PARA CREAR UN SLICE Y TENGO QUE PREGUNTARLE SI PUEDO HACERLO
+- REPASAR LA FUNCIONALIDAD DE CREAR UN SLICE Y PREGUNTAR POR QUÉ NO ME RECOGE LOS VALORES ACTUALIZADOS DE LOS DEUDORES
 

@@ -6,8 +6,8 @@ const addOneDebtor = () => {
 
 }
 
-const addUserToSlice = (groupId, userId, userAction) => {
-    return db.query('INSERT INTO slices_has_users (groupId, userId, userAction) VALUES (?, ?, ?)', [groupId, userId, userAction])
+const addUserToSlice = ({ sliceId, userId, action }) => {
+    return db.query('INSERT INTO slices_has_users (sliceId, userId, action) VALUES (?, ?, ?)', [sliceId, userId, action])
 }
 
 
