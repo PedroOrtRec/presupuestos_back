@@ -20,6 +20,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    console.log('Principio del post')
     const [users] = await getUserByEmail(req.body.userEmail);
     if (users.length === 0) {
         return res.json({ fatal: 'Usuario y/o contraseña incorrectos' })
@@ -27,7 +28,13 @@ router.post('/', async (req, res) => {
 
     const user = users[0];
 
+    console.log('Antes de la comparación de ls encriptación')
+    console.log(req.body.password);
+    console.log(user.password)
+
     const sames = bcrypt.compareSync(req.body.password, user.password);
+
+    console.log('Después de la comparación de la encriptación')
 
     if (!sames) {
         return res.json({ fatal: 'Usuario y/o contraseña incorrectos' });
