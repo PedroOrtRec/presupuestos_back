@@ -1,6 +1,7 @@
 const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
 const { addOneUserToGroup, getRolByUserId } = require('../../models/groups_has_users.model');
+const { sendInvitation } = require('../../models/invitations.model');
 const { getUsersByGroupId, getUserByEmail, getUserByPhone } = require('../../models/users.model');
 
 const router = require('express').Router();
@@ -61,7 +62,7 @@ router.post('/new', async (req, res) => {
     }
 });
 
-router.post('/:groupId/addUser', async (req, res) => {
+/* router.post('/:groupId/addUser', async (req, res) => {
     const { groupId } = req.params;
     const { userId } = req.user;
     try {
@@ -74,31 +75,41 @@ router.post('/:groupId/addUser', async (req, res) => {
             const { userId } = req.body;
             const debtAmount = 0.00;
             const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount });
-            //Lo siguiente es lo mismo que arriba, lo tengo que meter en una función
             const [group] = await getGroupById(groupId);
             const [users] = await getUsersByGroupId(groupId);
             group[0].users = users;
             res.json(group);
-            //ESTO NO IMPIDE QUE SE AGREGUE UNA Y OTRA VEZ EL MISMO USUARIO
         }
     } catch (error) {
         res.json({ fatal: error.message })
     }
-});
+}); */
 
 router.post('/:groupId/invitation', async (req, res) => {
     const { groupId } = req.params;
-    const { userId } = req.users;
-    const { userEmail } = req.body;
-    const { userPhone } = req.body;
+    const { userId } = req.user;
+    const { userEmail, userPhone } = req.body;
+    const status = 'pending';
+    let invitedUser = [];
     try {
-        if (userEmail) {
-            const [userInvited] = await getUserByEmail(userEmail)
-        } else if (userPhone) {
-            const [userInvited] = await getUserByPhone(userPhone)
+        const [admin] = await getRolByUserId({ userId, groupId })
+        if (admin.length === 0) {
+            res.json({ fatal: 'No eres usuario de este grupo' })
+            return userId
         }
-        const invitedId = userInvited.insertId;
-        const [invitation] = await sendInvitation({ invitedId, userId, groupId });
+        const { userRol } = admin[0];
+        if (userRol !== 'admin') {
+            res.json({ fatal: 'No eres administrador de este grupo' });
+            return userRol;
+        }
+        if (userEmail) {
+            [invitedUser] = await getUserByEmail(userEmail);
+        } else if (userPhone) {
+            [invitedUser] = await getUserByPhone(userPhone);
+        }
+        const toId = invitedUser[0].userId;
+        const [invitation] = await sendInvitation({ userId, toId, groupId, status });
+        res.json(invitation);
     } catch (error) {
         res.json({ fatal: error.message })
     }

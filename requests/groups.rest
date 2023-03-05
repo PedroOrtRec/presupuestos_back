@@ -15,10 +15,14 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/users/groups/10/addUser
+POST http://localhost:3000/users/groups/14/addUser
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODQzOTIwMSwiaWF0IjoxNjc3NTc1MjAxfQ.b6jjC4252ILJmf1jZBwWrcXW4DSmIj1OBRdxrG0FfLw
 Content-Type: application/json
 
 {
-    "userId": "6"
+    "userId": "11"
 }
+
+###
+POST http://localhost:3000/users/home/invitations/2/accept
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwdCI6MTY3ODg3OTcyMSwiaWF0IjoxNjc4MDE1NzIxfQ.d7fF8UrRI0o-OiVe2OG_PUk1bauvO9eGo7Q3fi5xRUc

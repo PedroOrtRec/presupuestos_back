@@ -66,7 +66,9 @@ Se puede crear un grupo en la ruta users/groups/new pasándole un objeto:
 
 y al crearlo añade como administrado al usuario que indique el token de la cabecera necesaria para entrar en users. La api responde con los datos del grupo y los datos del administrador.
 
--- AÑADIR UN USUARIO A UN GRUPO --
+-- METODO ANTIGUO DE AÑADIR UN USUARIO A UN GRUPO --
+
+-hay que descomentar esta lógica para poder usarla. groups.js-
 
 Se puede añadir un nuevo usuario a un grupo en la ruta users/groups/:groupId/addUser. Se necesita token, introducir por parámetro la id del grupo y en elbody la id del usuario en un objeto:
 
@@ -97,6 +99,33 @@ Esto devuelve un array con los usuarios del grupo con su nueva deuda
 -- BORRAR UN SLICE --
 
 -- MODIFICAR UN SLICE --
+
+-- MANDAR UNA INVITACIÓN --
+
+Se puede mandar una invitación a un usuario desde la ruta users/groups/:groupId/invitations. Teniendo el token y mandando un objeto con los datos del usuario al que se le quiere mandar una invitación. El objeto puede ser así:
+
+{
+    "userEmail": "email"
+}
+
+o así
+
+{
+    "userPhone": "numberPhone"
+}
+
+-- VER LAS INVITACIONES --
+
+Se pueden ver las invitaciones de un usuario con token haciendo un get a la ruta users/home/invitations
+
+-- CHEKEAR UNA INVITACIÓN --
+
+Se puede chekear una invitación en concreto, teniendo token, en la ruta users/home/invitations/:invitationId
+
+-- ACEPTAR UNA INVITACIÓN (AÑADIR USUARIO AL GRUPO) -- 
+
+Se puede aceptar una invitación, y por lo tanto añadir al usuario especificado en el token al grupo especificado en la invitación, en la ruta users/home/invitations/:invitationId/accept
+
 
 // TODO //
 

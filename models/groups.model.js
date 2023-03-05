@@ -6,6 +6,10 @@ const getGroupById = (groupId) => {
     return db.query('SELECT * FROM dbgroups WHERE groupId = ?', [groupId])
 }
 
+const getGroupIdByInvitationId = (invitationId) => {
+    return db.query('SELECT g.groupId FROM dbgroups AS g INNER JOIN invitations AS i ON i.groupId = g.groupId WHERE i.invitationId = ?', [invitationId])
+}
+
 const updateGroup = (groupId, { groupTitle, groupDescription }) => {
     return db.query('UPDATE dbgroups SET groupTitle = ?, groupDescription =? WHERE groupId = ?', [groupTitle, groupDescription, groupId])
 
@@ -20,5 +24,5 @@ const deleteGroup = (groupId) => {
 }
 
 module.exports = {
-    getGroupsByUserId, createGroup, getGroupById
+    getGroupsByUserId, createGroup, getGroupById, getGroupIdByInvitationId
 }

@@ -10,11 +10,11 @@ POST http://localhost:3000/login/register
 Content-Type: application/json
 
 {
-    "userName": "Marta",
-    "userSurname": "Moreno",
-    "userEmail": "marmor@terra.es",
-    "userPhone": "665781230",
-    "password": "lamartavacilona"
+    "userName": "Manuel",
+    "userSurname": "Jiménez",
+    "userEmail": "manji@gmail.com",
+    "userPhone": "765549821",
+    "password": "porelmonte"
 }
 
 ###
@@ -24,4 +24,13 @@ Content-Type: application/json
 {
     "userEmail": "marmor@terra.es",
     "password": "lamartavacilona"
+}
+
+###
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userEmail": "juanfer@terra.es",
+    "password": "juanitojuan"
 }

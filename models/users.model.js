@@ -3,11 +3,11 @@ const getUserById = (userId) => {
 }
 
 const getUserByEmail = (userEmail) => {
-    return db.query('SELECT * FROM users WHERE userEmail = ?', [userEmail])
+    return db.query('SELECT userId, userName, userSurname, userEmail, userPhone FROM users WHERE userEmail = ?', [userEmail])
 }
 
 const getUserByPhone = (userPhone) => {
-    return db.query('SELECT * FROM users WHERE userPhone = ?,'[userPhone])
+    return db.query('SELECT userId, userName, userSurname, userEmail, userPhone FROM users WHERE userPhone = ?,'[userPhone])
 }
 
 const getUsersByGroupId = (groupId) => {
