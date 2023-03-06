@@ -10,6 +10,14 @@ const checkInvitation = (invitationId) => {
     return db.query('UPDATE invitations SET status = "checked" WHERE invitationId = ?', [invitationId])
 }
 
+const declineInvitation = (invitationId) => {
+    return db.query('UPDATE invitations SET status = "declined" WHERE invitationId = ?', [invitationId])
+}
+
+const acceptInvitation = (invitationId) => {
+    return db.query('UPDATE invitations SET status = "accepted" WHERE invitationId = ?', [invitationId])
+}
+
 module.exports = {
-    sendInvitation, getAllInvitationsByUserId, checkInvitation
+    sendInvitation, getAllInvitationsByUserId, checkInvitation, declineInvitation, acceptInvitation
 }

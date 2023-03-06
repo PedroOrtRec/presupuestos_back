@@ -1,6 +1,7 @@
 const { getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId } = require('../../../models/groups_has_users.model');
 const { getSlicesByGroupId, createSlice } = require('../../../models/slices.models');
 const { addUserToSlice } = require('../../../models/slices_has_users.model');
+const { getUsersBySliceId } = require('../../../models/users.model');
 
 const router = require('express').Router();
 
@@ -9,7 +10,18 @@ router.get('/', async (req, res) => {
     try {
         const [slices] = await getSlicesByGroupId(groupId);
         //AQUI AHORA TENGO QUE ENCONTRAR LA INFO DE LOS USUARIOS DE CADA SLICE
-        res.json(slices);
+
+        const array = await Promise.all(slices.map(async slice => {
+            const [users] = await getUsersBySliceId(slice.sliceId)
+
+            slice.users = users;
+
+
+            return slice
+        }))
+        console.log(array)
+        res.json(array)
+
     } catch {
         res.json({ fatal: error.message })
     }
@@ -49,12 +61,12 @@ router.post('/add', async (req, res) => {
         await updateDebtAmount({ newAmount, userId, groupId });
 
         //AÑADO UN SALDO NEGATIVO A LOS DEUDORES
-        usersDebtors.map(async (userId) => {
+        await Promise.all(usersDebtors.map(async (userId) => {
             const [amountObject] = await getDebtAmountByUserId({ userId, groupId });
             const { debtAmount } = amountObject[0];
-            const newAmount = +debtAmount - +slicing;
+            const newAmount = Number(debtAmount) - Number(slicing);
             await updateDebtAmount({ newAmount, userId, groupId });
-        });
+        }));
 
         //FABRICO LA RESPUESTA
         const [allDebts] = await getAllAmountsByGroupsId(groupId);

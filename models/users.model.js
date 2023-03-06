@@ -31,7 +31,11 @@ const deleteUser = (userId) => {
     )
 }
 
+const getUsersBySliceId = (sliceId) => {
+    return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "name" FROM users AS u INNER JOIN slices_has_users AS tbi ON tbi.userId = u.userId WHERE tbi.sliceId = ? GROUP BY u.userId', [sliceId])
+}
+
 
 module.exports = {
-    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone
+    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId
 }

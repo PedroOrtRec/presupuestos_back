@@ -1,6 +1,6 @@
 const { getGroupIdByInvitationId, getGroupById } = require('../../models/groups.model');
 const { addOneUserToGroup } = require('../../models/groups_has_users.model');
-const { getAllInvitationsByUserId, checkInvitation } = require('../../models/invitations.model');
+const { getAllInvitationsByUserId, checkInvitation, acceptInvitation, declineInvitation } = require('../../models/invitations.model');
 const { getUserById, getUsersByGroupId } = require('../../models/users.model');
 
 const router = require('express').Router();
@@ -55,10 +55,21 @@ router.patch('/invitations/:invitationId', async (req, res) => {
     }
 });
 
+router.patch('/invitations/:invitationId/decline', async (req, res) => {
+    const { invitationId } = req.params;
+    try {
+        const [declined] = await declineInvitation(invitationId);
+        res.json(declined)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
+
 router.post('/invitations/:invitationId/accept', async (req, res) => {
     const { userId } = req.user;
     const { invitationId } = req.params;
     try {
+        const [accepted] = await acceptInvitation(invitationId);
         const userRol = 'viewer';
         const debtAmount = 0.00;
         const [groupData] = await getGroupIdByInvitationId(invitationId);

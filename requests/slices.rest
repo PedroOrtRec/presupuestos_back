@@ -8,7 +8,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6
 Content-Type: application/json
 
 {
-    "description" : "Primer Slice de Prueba",
+    "description" : "Decimotercer Slice de Prueba",
     "amount" : "100",
     "userId" : "6",
     "usersDebtors" : [7, 9, 10]
