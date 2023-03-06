@@ -28,13 +28,7 @@ router.post('/', async (req, res) => {
 
     const user = users[0];
 
-    console.log('Antes de la comparación de ls encriptación')
-    console.log(req.body.password);
-    console.log(user.password)
-
     const sames = bcrypt.compareSync(req.body.password, user.password);
-
-    console.log('Después de la comparación de la encriptación')
 
     if (!sames) {
         return res.json({ fatal: 'Usuario y/o contraseña incorrectos' });

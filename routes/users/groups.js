@@ -85,6 +85,17 @@ router.post('/new', async (req, res) => {
     }
 }); */
 
+router.get('/:groupId', async (req, res) => {
+    const { groupId } = req.params
+    try {
+        const [result] = await getGroupById(groupId)
+        const group = result[0];
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+});
+
 router.post('/:groupId/invitation', async (req, res) => {
     const { groupId } = req.params;
     const { userId } = req.user;
