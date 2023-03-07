@@ -48,6 +48,10 @@ si descomentas esta función y comentas el middleware de checkToken en el router
 
 -- // BORRAR UN USUARIO --
 
+-- VER EL CORREO Y EL TELÉFONO DE TODOS LOS USUARIOS --
+
+Se pueden obtener los correos y los telefonos de todos los usuarios, teniendo token, haciendo un get sobre la ruta users/all
+
 
 --VER LOS GRUPOS DE UN USUARIO--
 

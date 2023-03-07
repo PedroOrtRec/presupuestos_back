@@ -14,6 +14,10 @@ const getUsersByGroupId = (groupId) => {
     return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "player", tbi.userRol FROM users AS u INNER JOIN groups_has_users AS tbi ON u.userId = tbi.userId INNER JOIN dbgroups AS g ON tbi.groupId = g.groupId WHERE g.groupId = ? GROUP BY tbi.userId', [groupId])
 }
 
+const getAllUsers = () => {
+    return db.query('SELECT u.userEmail, u.userPhone FROM users AS u')
+}
+
 const createUser = ({ userName, userSurname, userEmail, userPhone, password }) => {
     return db.query('INSERT INTO users (userName, userSurname, userEmail, userPhone, password) VALUES (?, ?, ?, ?, ?)', [userName, userSurname, userEmail, userPhone, password])
 }
@@ -37,5 +41,5 @@ const getUsersBySliceId = (sliceId) => {
 
 
 module.exports = {
-    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId
+    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId, getAllUsers
 }

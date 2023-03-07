@@ -2,6 +2,10 @@
 GET http://localhost:3000/users/home/9
 
 ###
+GET http://localhost:3000/users/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDQxOCwiaWF0IjoxNjc3MzQwNDE4fQ.KdW5XWqlBQ0NUWC2zUpG7QMbuFFHeNSikqo-fx7mfzc
+
+###
 GET http://localhost:3000/users/home/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDQxOCwiaWF0IjoxNjc3MzQwNDE4fQ.KdW5XWqlBQ0NUWC2zUpG7QMbuFFHeNSikqo-fx7mfzc
 
