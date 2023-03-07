@@ -6,6 +6,8 @@ const storage = multer.diskStorage({
     destination: path.join(__dirname, '../../public/images'),
     filename: (req, file, cb) => {
         cb(null, file.originalname);
+
+        //ESTAMOS AHORA EN GENERAR UN NOMBRE ALEATORIO Y ÚNICO CON UUID
     }
 });
 

@@ -52,7 +52,6 @@ si descomentas esta función y comentas el middleware de checkToken en el router
 
 Se pueden obtener los correos y los telefonos de todos los usuarios, teniendo token, haciendo un get sobre la ruta users/all
 
-
 --VER LOS GRUPOS DE UN USUARIO--
 
 Pasando una cabecera authorization: con el token actualizado de un usuario, puedes acceder a su información de todos sus grupos haciendo un GET sobre users/groups. Además, por cada grupo, te devuelve un array con los participantes y su id.
@@ -72,6 +71,10 @@ Se puede crear un grupo en la ruta users/groups/new pasándole un objeto:
 }
 
 y al crearlo añade como administrado al usuario que indique el token de la cabecera necesaria para entrar en users. La api responde con los datos del grupo y los datos del administrador.
+
+-- VER LOS USUARIOS DE UN GRUPO --
+
+Si tienes token, puedes ver los usuarios de un grupo haciendo un get sobre groups/:groupId/users
 
 -- METODO ANTIGUO DE AÑADIR UN USUARIO A UN GRUPO --
 
