@@ -1,6 +1,6 @@
 const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
-const { addOneUserToGroup, getRolByUserId } = require('../../models/groups_has_users.model');
+const { addOneUserToGroup, getRolByUserId, getAllAmountsByGroupsId } = require('../../models/groups_has_users.model');
 const { sendInvitation } = require('../../models/invitations.model');
 const { getUsersByGroupId, getUserByEmail, getUserByPhone } = require('../../models/users.model');
 
@@ -100,6 +100,16 @@ router.get('/:groupId/users', async (req, res) => {
     const { groupId } = req.params
     try {
         const [result] = await getUsersByGroupId(groupId);
+        res.json(result)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
+router.get('/:groupId/amounts', async (req, res) => {
+    const { groupId } = req.params;
+    try {
+        const [result] = await getAllAmountsByGroupsId(groupId)
         res.json(result)
     } catch (error) {
         res.json({ fatal: error.message })

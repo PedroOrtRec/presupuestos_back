@@ -6,7 +6,7 @@ const { getAllUsers } = require('../models/users.model');
 router.get('/all', checkToken, async (req, res) => {
     try {
         const [all] = await getAllUsers()
-        res.json({ all })
+        res.json(all)
     } catch (error) {
         res.json({ fatal: error.message })
     }
