@@ -63,6 +63,7 @@ Si descomentas esta función y comentas el middleware de checkToken en el router
 En la ruta users/:groupId/amounts se puede hacer un get, teniendo token, para recibir la id de los usuarios de un grupo, más su deuda y su nombre y apellidos
 
 --VER UN GRUPO POR ID--
+
 Con el token, en la ruta users/groups/:groupId, se puede hacer un get para obtener un grupo por id pasada por parámetro.
 
 -- CREAR UN GRUPO --
@@ -104,7 +105,7 @@ Se puede crear un slice haciendo una petición post a la ruta users/groups/:grou
         "description" : "description",
     "amount" : "amount",
     "userId" : "userId",
-    "usersDebtors" : [array of usersId]
+    "usersDebtors" : [array of usersId DE TODOS LOS PARTICIPANTES]
 
 }
 

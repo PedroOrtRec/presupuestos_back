@@ -29,6 +29,10 @@ const updateUser = (userId, { userName, userSurname, userEmail, userPhone, passw
     )
 }
 
+const uploadImage = ({ imagePath, userId }) => {
+    return db.query('UPDATE users SET imagePath = ? WHERE userId = ?', [imagePath, userId])
+}
+
 const deleteUser = (userId) => {
     return db.query(
         'DELETE FROM users WHERE userId = ?', [userId]
@@ -41,5 +45,5 @@ const getUsersBySliceId = (sliceId) => {
 
 
 module.exports = {
-    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId, getAllUsers
+    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId, getAllUsers, uploadImage
 }

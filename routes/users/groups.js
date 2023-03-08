@@ -1,5 +1,5 @@
 const { checkGroups } = require('../../helpers/middlewares');
-const { getGroupsByUserId, createGroup, getGroupById } = require('../../models/groups.model');
+const { getGroupsByUserId, createGroup, getGroupById, deleteGroup } = require('../../models/groups.model');
 const { addOneUserToGroup, getRolByUserId, getAllAmountsByGroupsId } = require('../../models/groups_has_users.model');
 const { sendInvitation } = require('../../models/invitations.model');
 const { getUsersByGroupId, getUserByEmail, getUserByPhone } = require('../../models/users.model');
@@ -95,6 +95,16 @@ router.get('/:groupId', async (req, res) => {
         res.json({ fatal: error.message });
     }
 });
+
+router.get('/:groupId', async (req, res) => {
+    const { groupId } = req.params;
+    try {
+        const [result] = await deleteGroup(groupId)
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+})
 
 router.get('/:groupId/users', async (req, res) => {
     const { groupId } = req.params

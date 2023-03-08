@@ -87,6 +87,16 @@ router.post('/invitations/:invitationId/accept', async (req, res) => {
     }
 });
 
+router.get('/avatar', async (req, res) => {
+    const { userId } = req.user;
+    try {
+        const [result] = getImagePathByUserId(userId);
+        const imagePath = result[0];
+        // const url = ``
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
 
 
 

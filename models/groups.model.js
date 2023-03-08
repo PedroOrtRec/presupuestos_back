@@ -24,5 +24,5 @@ const deleteGroup = (groupId) => {
 }
 
 module.exports = {
-    getGroupsByUserId, createGroup, getGroupById, getGroupIdByInvitationId
+    getGroupsByUserId, createGroup, getGroupById, getGroupIdByInvitationId, deleteGroup
 }

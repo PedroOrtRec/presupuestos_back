@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const multer = require('multer')
 const path = require('path')
-const { v4: uuidv4 } = require('uuid')
+const { v4: uuidv4 } = require('uuid');
+const { uploadImage } = require('../../models/users.model');
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../../public/images'),
@@ -24,8 +25,17 @@ const middlewareMulter = (multer({
     }
 }).single('avatar'));
 
-router.post('/images', middlewareMulter, (req, res) => {
-    console.log(req.file)
+router.post('/images', middlewareMulter, async (req, res) => {
+    // const { userId } = req.user;
+    // const imagePath = req.file.filename;
+    // try {
+    //     const [result] = await uploadImage({ userId, imagePath });
+    //     res.json(result)
+    // } catch (error) {
+    //     res.json({ fatal: error.message })
+    // }
+
+    console.log(req.file.filename)
     res.send('uploaded')
 
 });
