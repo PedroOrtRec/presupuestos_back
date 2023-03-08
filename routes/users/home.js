@@ -73,10 +73,10 @@ router.post('/invitations/:invitationId/accept', async (req, res) => {
         const userRol = 'viewer';
         const debtAmount = 0.00;
         const [groupData] = await getGroupIdByInvitationId(invitationId);
-        console.log(groupData)
+
         const { groupId } = groupData[0];
 
-        console.log(groupId)
+
         const [added] = await addOneUserToGroup({ userRol, groupId, userId, debtAmount });
         const [group] = await getGroupById(groupId);
         const [users] = await getUsersByGroupId(groupId);

@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "description" : "Decimotercer Slice de Prueba",
-    "amount" : "100",
+    "amount" : "40",
     "userId" : "6",
-    "usersDebtors" : [7, 9, 10]
+    "usersDebtors" : [7, 9, 10, 6]
 }

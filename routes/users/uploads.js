@@ -1,13 +1,12 @@
 const router = require('express').Router();
 const multer = require('multer')
 const path = require('path')
+const { v4: uuidv4 } = require('uuid')
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../../public/images'),
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
-
-        //ESTAMOS AHORA EN GENERAR UN NOMBRE ALEATORIO Y ÚNICO CON UUID
+        cb(null, uuidv4() + path.extname(file.originalname));
     }
 });
 

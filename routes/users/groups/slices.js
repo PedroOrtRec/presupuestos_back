@@ -50,13 +50,13 @@ router.post('/add', async (req, res) => {
         });
 
         //GENERO VARIABLES PARA HACER LOS CÁLCULOS. 
-        const players = usersDebtors.length + 1;
+        const players = usersDebtors.length;
         const slicing = amount / players;
 
         //AÑADO UN SALDO POSITIVO AL PAGADOR
         const [amountObject] = await getDebtAmountByUserId({ userId, groupId });
         const { debtAmount } = amountObject[0];
-        const restSlicing = slicing * (players - 1);
+        const restSlicing = amount;
         const newAmount = +debtAmount + +restSlicing;
         await updateDebtAmount({ newAmount, userId, groupId });
 
