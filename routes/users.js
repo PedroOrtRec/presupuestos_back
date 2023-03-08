@@ -1,12 +1,22 @@
 const router = require('express').Router();
 
 const { checkToken } = require('../helpers/middlewares');
-const { getAllUsers } = require('../models/users.model');
+const { getAllUsers, getUserById } = require('../models/users.model');
 
 router.get('/all', checkToken, async (req, res) => {
     try {
         const [all] = await getAllUsers()
         res.json(all)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
+router.get('/:userId', checkToken, async (req, res) => {
+    const { userId } = req.params
+    try {
+        const [user] = await getUserById(userId)
+        res.json(user)
     } catch (error) {
         res.json({ fatal: error.message })
     }

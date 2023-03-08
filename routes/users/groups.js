@@ -114,7 +114,7 @@ router.get('/:groupId/amounts', async (req, res) => {
     } catch (error) {
         res.json({ fatal: error.message })
     }
-})
+});
 
 router.post('/:groupId/invitation', async (req, res) => {
     const { groupId } = req.params;

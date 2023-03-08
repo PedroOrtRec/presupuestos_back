@@ -58,6 +58,10 @@ Pasando una cabecera authorization: con el token actualizado de un usuario, pued
 
 Si descomentas esta función y comentas el middleware de checkToken en el router para groups de users.js, Con la ruta GET /users/groups/:clientId podemos entrar en la carpeta ./users/groups y desde allí hacemos una petición que nos devuelve la lista de grupos que tiene el usuario que le pasemos por parametro
 
+-- VER LAS DEUDAS Y LOS NOMBRES DE LOS USUARIOS DE UN GRUPO --
+
+En la ruta users/:groupId/amounts se puede hacer un get, teniendo token, para recibir la id de los usuarios de un grupo, más su deuda y su nombre y apellidos
+
 --VER UN GRUPO POR ID--
 Con el token, en la ruta users/groups/:groupId, se puede hacer un get para obtener un grupo por id pasada por parámetro.
 
