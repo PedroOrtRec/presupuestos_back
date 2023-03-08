@@ -6,8 +6,12 @@ GET http://localhost:3000/users/all
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDQxOCwiaWF0IjoxNjc3MzQwNDE4fQ.KdW5XWqlBQ0NUWC2zUpG7QMbuFFHeNSikqo-fx7mfzc
 
 ###
-GET http://localhost:3000/users/home/
+GET http://localhost:3000/users/6
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDQxOCwiaWF0IjoxNjc3MzQwNDE4fQ.KdW5XWqlBQ0NUWC2zUpG7QMbuFFHeNSikqo-fx7mfzc
+
+###
+GET http://localhost:3000/users/home/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3OTE2ODQyMSwiaWF0IjoxNjc4MzA0NDIxfQ.OdLNM9Z00en5T-CnjQKb5k6V_12i6DdWkpO90W3xB2E
 
 ###
 POST http://localhost:3000/login/register

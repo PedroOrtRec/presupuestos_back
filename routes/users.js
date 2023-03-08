@@ -12,8 +12,22 @@ router.get('/all', checkToken, async (req, res) => {
     }
 });
 
+router.get('/', checkToken, async (req, res) => {
+    console.log('Estas en users/')
+    const { userId } = req.user
+    console.log(userId)
+    try {
+        const [user] = await getUserById(userId)
+        res.json(user)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
+
 router.get('/:userId', checkToken, async (req, res) => {
+    console.log('Estas en users/:userId')
     const { userId } = req.params
+    console.log(userId)
     try {
         const [user] = await getUserById(userId)
         res.json(user)

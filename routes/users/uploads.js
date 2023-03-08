@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const { uploadImage } = require('../../models/users.model');
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../../public/images'),
+    destination: path.join(__dirname, '../../public/uploads'),
     filename: (req, file, cb) => {
         cb(null, uuidv4() + path.extname(file.originalname));
     }
@@ -25,20 +25,20 @@ const middlewareMulter = (multer({
     }
 }).single('avatar'));
 
-router.post('/images', middlewareMulter, async (req, res) => {
-    // const { userId } = req.user;
-    // const imagePath = req.file.filename;
-    // try {
-    //     const [result] = await uploadImage({ userId, imagePath });
-    //     res.json(result)
-    // } catch (error) {
-    //     res.json({ fatal: error.message })
-    // }
+// router.post('/uploads', middlewareMulter, async (req, res) => {
+// const { userId } = req.user;
+// const imagePath = req.file.filename;
+// try {
+//     const [result] = await uploadImage({ userId, imagePath });
+//     res.json(result)
+// } catch (error) {
+//     res.json({ fatal: error.message })
+// }
 
-    console.log(req.file.filename)
-    res.send('uploaded')
+// console.log(req.file.filename)
+// res.send('uploaded')
 
-});
+// });
 
 
 module.exports = router;
