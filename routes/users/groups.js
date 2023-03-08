@@ -96,7 +96,7 @@ router.get('/:groupId', async (req, res) => {
     }
 });
 
-router.get('/:groupId', async (req, res) => {
+router.get('/:groupId/delete', async (req, res) => {
     const { groupId } = req.params;
     try {
         const [result] = await deleteGroup(groupId)
