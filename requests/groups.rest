@@ -11,7 +11,7 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwdCI6M
 
 ###
 GET http://localhost:3000/users/groups
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDkwOSwiaWF0IjoxNjc3MzQwOTA5fQ.cE_EG3od8CyI8jsgg5XSdd8RA9lS9ykRjWeC9DW633w
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3OTE3MDczNCwiaWF0IjoxNjc4MzA2NzM0fQ.OyA06BaTtSVTyIbiAv5qSUhG5YFLfEbTZeJcHClM5Us
 
 ###
 GET http://localhost:3000/users/groups/10/users
@@ -37,4 +37,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/users/groups/1/amounts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDkwOSwiaWF0IjoxNjc3MzQwOTA5fQ.cE_EG3od8CyI8jsgg5XSdd8RA9lS9ykRjWeC9DW633w
+
+###
+DELETE http://localhost:3000/users/groups/2/delete
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDkwOSwiaWF0IjoxNjc3MzQwOTA5fQ.cE_EG3od8CyI8jsgg5XSdd8RA9lS9ykRjWeC9DW633w
