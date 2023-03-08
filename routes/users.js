@@ -12,16 +12,6 @@ router.get('/all', checkToken, async (req, res) => {
     }
 });
 
-router.get('/:userId', checkToken, async (req, res) => {
-    const { userId } = req.params
-    try {
-        const [user] = await getUserById(userId)
-        res.json(user)
-    } catch (error) {
-        res.json({ fatal: error.message })
-    }
-})
-
 router.use('/home', checkToken, require('./users/home'));
 
 router.use('/groups', checkToken, require('./users/groups'));
