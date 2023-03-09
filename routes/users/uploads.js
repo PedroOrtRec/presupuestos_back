@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 
 const middlewareMulter = (multer({
     storage,
-    limits: { fileSize: 1000000 },
+    limits: { fileSize: 10000000 },
     fileFilter: (req, file, cb) => {
         const filetypes = /jpeg|jpg|png|gif/;
         const mimetype = filetypes.test(file.mimetype);

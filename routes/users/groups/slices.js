@@ -1,6 +1,6 @@
 const { getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId } = require('../../../models/groups_has_users.model');
 const { getSlicesByGroupId, createSlice, deleteSlice } = require('../../../models/slices.models');
-const { addUserToSlice } = require('../../../models/slices_has_users.model');
+const { addUserToSlice, getPayerBySliceId } = require('../../../models/slices_has_users.model');
 const { getUsersBySliceId } = require('../../../models/users.model');
 
 const router = require('express').Router();
@@ -16,6 +16,11 @@ router.get('/', async (req, res) => {
 
             slice.users = users;
 
+            console.log(slice.sliceId)
+
+            const [payer] = await getPayerBySliceId(slice.sliceId);
+
+            slice.payer = payer[0];
 
             return slice
         }))
@@ -70,6 +75,7 @@ router.post('/add', async (req, res) => {
 
         //FABRICO LA RESPUESTA
         const [allDebts] = await getAllAmountsByGroupsId(groupId);
+
         res.json(allDebts);
 
     } catch (error) {
