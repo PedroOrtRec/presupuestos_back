@@ -6,8 +6,8 @@ GET http://localhost:3000/users/groups/5
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODIwNDkwOSwiaWF0IjoxNjc3MzQwOTA5fQ.cE_EG3od8CyI8jsgg5XSdd8RA9lS9ykRjWeC9DW633w
 
 ###
-DELETE  http://localhost:3000/19/delete
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwdCI6MTY3OTE2Njk1NSwiaWF0IjoxNjc4MzAyOTU1fQ.Wb92tRidCEDJ15bSMao9pxlU4qh6PU4rk5T1TgU3ibQ
+DELETE  http://localhost:3000/users/groups/3/delete
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwdCI6MTY3OTIyNzkzOCwiaWF0IjoxNjc4MzYzOTM4fQ.vQrJkS9j0AKrRiiWL0UpcXE8dAoCjZv8AAjescITL78
 
 ###
 GET http://localhost:3000/users/groups

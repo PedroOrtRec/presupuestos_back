@@ -97,15 +97,15 @@ router.get('/:groupId', async (req, res) => {
     }
 });
 
-// router.delete('/:groupId/delete', async (req, res) => {
-//     const { groupId } = req.params;
-//     try {
-//         const [result] = await deleteGroup(groupId)
-//         res.json(result);
-//     } catch (error) {
-//         res.json({ fatal: error.message });
-//     }
-// });
+router.delete('/:groupId/delete', async (req, res) => {
+    const { groupId } = req.params;
+    try {
+        const [result] = await deleteGroup(groupId)
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+});
 
 router.get('/:groupId/users', async (req, res) => {
     const { groupId } = req.params
