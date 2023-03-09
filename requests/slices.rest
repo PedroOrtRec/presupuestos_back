@@ -13,3 +13,7 @@ Content-Type: application/json
     "userId" : "6",
     "usersDebtors" : [7, 9, 10, 6]
 }
+
+###
+DELETE http://localhost:3000/users/groups/1/slices/2/delete
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMCwiZXhwdCI6MTY3ODcyMjU1MSwiaWF0IjoxNjc3ODU4NTUxfQ.MKcGfZrRQL-C7NnHjMQRtZjxEhc726U9lScM6tNFAdU

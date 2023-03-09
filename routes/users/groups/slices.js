@@ -1,5 +1,5 @@
 const { getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId } = require('../../../models/groups_has_users.model');
-const { getSlicesByGroupId, createSlice } = require('../../../models/slices.models');
+const { getSlicesByGroupId, createSlice, deleteSlice } = require('../../../models/slices.models');
 const { addUserToSlice } = require('../../../models/slices_has_users.model');
 const { getUsersBySliceId } = require('../../../models/users.model');
 
@@ -78,6 +78,16 @@ router.post('/add', async (req, res) => {
 }
 )
 
+
+router.delete('/:sliceId/delete', async (req, res) => {
+    const { sliceId } = req.params;
+    try {
+        const [result] = await deleteSlice(sliceId)
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+});
 
 
 module.exports = router;
