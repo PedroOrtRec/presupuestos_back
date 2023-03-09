@@ -6,8 +6,12 @@ const getPayerBySliceId = (sliceId) => {
     return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "payer" FROM users AS u INNER JOIN slices_has_users AS tbi ON u.userId = tbi.userId WHERE tbi.action = "pay" AND tbi.sliceId = ?', [sliceId])
 }
 
+const getDebtorsBySliceId = (sliceId) => {
+    return db.query('SELECT u.userId, CONCAT (u.userName, " ", u.userSurname) AS "payer" FROM users AS u INNER JOIN slices_has_users AS tbi ON u.userId = tbi.userId WHERE tbi.action = "debt" AND tbi.sliceId = ?', [sliceId])
+}
+
 
 module.exports = {
-    addUserToSlice, getPayerBySliceId
+    addUserToSlice, getPayerBySliceId, getDebtorsBySliceId
 
 }

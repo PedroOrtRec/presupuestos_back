@@ -1,8 +1,8 @@
 const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById, deleteGroup } = require('../../models/groups.model');
-const { addOneUserToGroup, getRolByUserId, getAllAmountsByGroupsId } = require('../../models/groups_has_users.model');
+const { addOneUserToGroup, getRolByUserId, getAllAmountsByGroupsId, getDebtAmountByUserId, deleteUserFromGroup } = require('../../models/groups_has_users.model');
 const { sendInvitation } = require('../../models/invitations.model');
-const { getUsersByGroupId, getUserByEmail, getUserByPhone } = require('../../models/users.model');
+const { getUsersByGroupId, getUserByEmail, getUserByPhone, getUserById } = require('../../models/users.model');
 
 const router = require('express').Router();
 
@@ -84,7 +84,20 @@ router.post('/:groupId/addUser', async (req, res) => {
     } catch (error) {
         res.json({ fatal: error.message })
     }
-}); 
+});
+
+router.post('/:groupId/deleteUser/:userId', async (req, res) => {
+    const { groupId, userId } = req.params;
+    try {
+        // const [amount] = await getDebtAmountByUserId({ userId, groupId });
+        const [userOut] = await deleteUserFromGroup({ userId, groupId });
+        // const [usersInto] = await getUsersByGroupId(groupId);
+        // await Promise.all(usersInto.map(async user => { console.log(user) }))
+        res.json(userOut)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
 
 router.get('/:groupId', async (req, res) => {
     const { groupId } = req.params

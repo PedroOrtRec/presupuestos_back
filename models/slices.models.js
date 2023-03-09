@@ -19,5 +19,5 @@ const deleteSlice = (sliceId) => {
 }
 
 module.exports = {
-    getSlicesByGroupId, createSlice, deleteSlice
+    getSlicesByGroupId, createSlice, deleteSlice, getSliceById
 }

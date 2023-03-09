@@ -2,6 +2,10 @@ const addOneUserToGroup = ({ userRol, groupId, userId, debtAmount }) => {
     return db.query('INSERT INTO groups_has_users (groupId, userId, userRol, debtAmount) VALUES (?, ?, ?, ?)', [groupId, userId, userRol, debtAmount])
 }
 
+const deleteUserFromGroup = ({ userId, groupId }) => {
+    return db.query('DELETE FROM groups_has_users WHERE userId = ? AND groupId = ?')
+}
+
 const getRolByUserId = ({ userId, groupId }) => {
     return db.query('SELECT tbi.userRol FROM groups_has_users AS tbi WHERE userId = ? AND groupId = ?', [userId, groupId])
 }
@@ -19,5 +23,5 @@ const getAllAmountsByGroupsId = (groupId) => {
 }
 
 module.exports = {
-    addOneUserToGroup, getRolByUserId, getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId
+    addOneUserToGroup, getRolByUserId, getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId, deleteUserFromGroup
 }

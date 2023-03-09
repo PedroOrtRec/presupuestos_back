@@ -1,6 +1,6 @@
 const { getDebtAmountByUserId, updateDebtAmount, getAllAmountsByGroupsId } = require('../../../models/groups_has_users.model');
-const { getSlicesByGroupId, createSlice, deleteSlice } = require('../../../models/slices.models');
-const { addUserToSlice, getPayerBySliceId } = require('../../../models/slices_has_users.model');
+const { getSlicesByGroupId, createSlice, deleteSlice, getSliceById } = require('../../../models/slices.models');
+const { addUserToSlice, getPayerBySliceId, getDebtorsBySliceId } = require('../../../models/slices_has_users.model');
 const { getUsersBySliceId } = require('../../../models/users.model');
 
 const router = require('express').Router();
@@ -62,7 +62,7 @@ router.post('/add', async (req, res) => {
         const [amountObject] = await getDebtAmountByUserId({ userId, groupId });
         const { debtAmount } = amountObject[0];
         const restSlicing = amount;
-        const newAmount = +debtAmount + +restSlicing;
+        const newAmount = Number(debtAmount) + Number(restSlicing);
         await updateDebtAmount({ newAmount, userId, groupId });
 
         //AÑADO UN SALDO NEGATIVO A LOS DEUDORES
@@ -86,9 +86,39 @@ router.post('/add', async (req, res) => {
 
 
 router.delete('/:sliceId/delete', async (req, res) => {
+    const { groupId } = req.groupId;
     const { sliceId } = req.params;
     try {
+        const [sliceInfo] = await getSliceById(sliceId)
+        const amount = sliceInfo[0].amount
+
+        const [allPlayers] = await getUsersBySliceId(sliceId)
+
+        const amountSliced = Number(amount) / allPlayers.length
+
+        const [debtors] = await getDebtorsBySliceId(sliceId)
+
+        const debtorsId = (debtors.map(debtor => debtor.userId))
+
+        await Promise.all(debtorsId.map(async (userId) => {
+            const [amountObject] = await getDebtAmountByUserId({ userId, groupId });
+            const { debtAmount } = amountObject[0];
+            const newAmount = Number(debtAmount) + Number(amountSliced);
+            const [debt] = await updateDebtAmount({ newAmount, userId, groupId });
+        }));
+
+        const [payer] = await getPayerBySliceId(sliceId)
+        const amountPaid = Number(amountSliced) * Number(allPlayers.length);
+        console.log(amountPaid)
+        const userId = Number(payer[0].userId);
+        console.log(userId)
+        const [amountObject] = await getDebtAmountByUserId({ userId, groupId })
+        const { debtAmount } = amountObject[0];
+        const newAmount = Number(debtAmount) - Number(amountPaid)
+        const [paid] = await updateDebtAmount({ newAmount, userId, groupId });
+
         const [result] = await deleteSlice(sliceId)
+
         res.json(result);
     } catch (error) {
         res.json({ fatal: error.message });
