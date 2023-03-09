@@ -63,7 +63,7 @@ router.post('/new', async (req, res) => {
     }
 });
 
-/* router.post('/:groupId/addUser', async (req, res) => {
+router.post('/:groupId/addUser', async (req, res) => {
     const { groupId } = req.params;
     const { userId } = req.user;
     try {
@@ -84,7 +84,7 @@ router.post('/new', async (req, res) => {
     } catch (error) {
         res.json({ fatal: error.message })
     }
-}); */
+}); 
 
 router.get('/:groupId', async (req, res) => {
     const { groupId } = req.params

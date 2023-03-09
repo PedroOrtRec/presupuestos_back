@@ -15,7 +15,7 @@ const getUsersByGroupId = (groupId) => {
 }
 
 const getAllUsers = () => {
-    return db.query('SELECT u.userEmail, u.userPhone FROM users AS u')
+    return db.query('SELECT u.userEmail, u.userPhone, u.userId FROM users AS u')
 }
 
 const createUser = ({ userName, userSurname, userEmail, userPhone, password }) => {
