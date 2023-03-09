@@ -18,6 +18,6 @@ router.use('/groups', checkToken, require('./users/groups'));
 
 router.use('/social', checkToken, require('./users/social'));
 
-router.use('/uploads', require('./users/uploads'))
+router.use('/uploads', checkToken, require('./users/uploads'))
 
 module.exports = router;
