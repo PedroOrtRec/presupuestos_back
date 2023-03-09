@@ -33,6 +33,10 @@ const uploadImage = ({ imagePath, userId }) => {
     return db.query('UPDATE users SET imagePath = ? WHERE userId = ?', [imagePath, userId])
 }
 
+const downloadImage = (userId) => {
+    return db.query('SELECT imagePath FROM users WHERE userId = ?', [userId])
+}
+
 const deleteUser = (userId) => {
     return db.query(
         'DELETE FROM users WHERE userId = ?', [userId]

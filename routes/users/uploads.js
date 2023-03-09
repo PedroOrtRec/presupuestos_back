@@ -26,14 +26,14 @@ const middlewareMulter = (multer({
 }).single('avatar'));
 
 router.post('/uploads', middlewareMulter, async (req, res) => {
-    // const { userId } = req.user;
-    // const imagePath = req.file.filename;
-    // try {
-    //     const [result] = await uploadImage({ userId, imagePath });
-    //     res.json(result)
-    // } catch (error) {
-    //     res.json({ fatal: error.message })
-    // }
+    const { userId } = req.user;
+    const imagePath = req.file.filename;
+    try {
+        const [result] = await uploadImage({ userId, imagePath });
+        res.json(result)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
 
     console.log(req.file.filename)
     res.send('uploaded')
