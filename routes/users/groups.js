@@ -86,7 +86,7 @@ router.post('/:groupId/addUser', async (req, res) => {
     }
 });
 
-router.post('/:groupId/deleteUser/:userId', async (req, res) => {
+router.delete('/:groupId/deleteUser/:userId', async (req, res) => {
     const { groupId, userId } = req.params;
     try {
         // const [amount] = await getDebtAmountByUserId({ userId, groupId });

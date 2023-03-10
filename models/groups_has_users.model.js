@@ -3,7 +3,7 @@ const addOneUserToGroup = ({ userRol, groupId, userId, debtAmount }) => {
 }
 
 const deleteUserFromGroup = ({ userId, groupId }) => {
-    return db.query('DELETE FROM groups_has_users WHERE userId = ? AND groupId = ?')
+    return db.query('DELETE FROM groups_has_users WHERE userId = ? AND groupId = ?', [userId, groupId])
 }
 
 const getRolByUserId = ({ userId, groupId }) => {
