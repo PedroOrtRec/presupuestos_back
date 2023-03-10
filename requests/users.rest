@@ -18,11 +18,11 @@ POST http://localhost:3000/login/register
 Content-Type: application/json
 
 {
-    "userName": "Manuel",
-    "userSurname": "Jiménez",
-    "userEmail": "manji@gmail.com",
-    "userPhone": "765549821",
-    "password": "porelmonte"
+    "userName": "Marcos",
+    "userSurname": "Rojas",
+    "userEmail": "marroj@gmail.com",
+    "userPhone": "688929213",
+    "password": "marcosmarcos"
 }
 
 ###

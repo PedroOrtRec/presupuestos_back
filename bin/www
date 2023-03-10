@@ -25,6 +25,58 @@ app.set('port', port);
 const server = http.createServer(app);
 
 /**
+ * Create IO connections
+ */
+
+//IMPORTACIÓN DEL MODELO
+
+const User = require('../models/users_mongo.model');
+
+//CONFIG .ENV Y DB
+
+require('dotenv').config();
+require('../config/mongodb');
+
+
+/**
+ * Config socket.io
+ 
+*/
+const io = require('socket.io')(server, {
+  cors: { origin: '*' }
+});
+
+//CONEXIÓN
+
+io.on('connection', (socket) => {
+  console.log('se ha conectado un cliente');
+
+  socket.broadcast.emit('mensaje_chat', {
+    user: 'INFO',
+    mensaje: 'Se ha conectado un nuevo cliente'
+  });
+
+  socket.on('nuevo_usuario', async (data) => {
+    const user = await User.create(data);
+
+    socket.emit('confirmacion_registro', user)
+  });
+
+  socket.on('entro_chat', async () => {
+    console.log(socket.id);
+    const user = await User.findOne({ socket_id: socket.id });
+    console.log(user);
+  });
+
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('mensaje_chat', {
+      user: 'INFO',
+      mensaje: 'Se ha desconectado un nuevo cliente'
+    });
+  });
+});
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
