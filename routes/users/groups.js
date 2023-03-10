@@ -27,15 +27,15 @@ router.get('/', async (req, res) => {
     try {
         const [groups] = await getGroupsByUserId(userId);
         if (groups.length === 0) {
-            res.json({ fatal: 'No hay grupos' });
-        }
+            res.json([]);
+        } else {
+            for (let group of groups) {
+                const [players] = await getUsersByGroupId(group.groupId);
+                group.players = players;
+            }
 
-        for (let group of groups) {
-            const [players] = await getUsersByGroupId(group.groupId);
-            group.players = players;
+            res.json(groups);
         }
-
-        res.json(groups);
     } catch (error) {
         res.json({ fatal: error.message })
     }

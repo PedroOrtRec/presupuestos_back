@@ -49,5 +49,5 @@ const getUsersBySliceId = (sliceId) => {
 
 
 module.exports = {
-    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId, getAllUsers, uploadImage
+    getUserById, createUser, getUserByEmail, getUsersByGroupId, getUserByPhone, getUsersBySliceId, getAllUsers, uploadImage, downloadImage
 }

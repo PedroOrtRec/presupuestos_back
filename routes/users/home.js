@@ -1,7 +1,7 @@
 const { getGroupIdByInvitationId, getGroupById } = require('../../models/groups.model');
 const { addOneUserToGroup } = require('../../models/groups_has_users.model');
 const { getAllInvitationsByUserId, checkInvitation, acceptInvitation, declineInvitation } = require('../../models/invitations.model');
-const { getUserById, getUsersByGroupId } = require('../../models/users.model');
+const { getUserById, getUsersByGroupId, downloadImage } = require('../../models/users.model');
 
 const router = require('express').Router();
 
@@ -89,10 +89,13 @@ router.post('/invitations/:invitationId/accept', async (req, res) => {
 
 router.get('/avatar', async (req, res) => {
     const { userId } = req.user;
+    console.log('en el /avatar')
     try {
-        const [result] = getImagePathByUserId(userId);
+        const [result] = await downloadImage(userId);
+        console.log(result)
         const imagePath = result[0];
-        // const url = ``
+        console.log(imagePath)
+        res.json(imagePath)
     } catch (error) {
         res.json({ fatal: error.message })
     }
