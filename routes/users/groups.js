@@ -2,7 +2,7 @@ const { checkGroups } = require('../../helpers/middlewares');
 const { getGroupsByUserId, createGroup, getGroupById, deleteGroup } = require('../../models/groups.model');
 const { addOneUserToGroup, getRolByUserId, getAllAmountsByGroupsId, getDebtAmountByUserId, deleteUserFromGroup } = require('../../models/groups_has_users.model');
 const { sendInvitation } = require('../../models/invitations.model');
-const { getUsersByGroupId, getUserByEmail, getUserByPhone, getUserById } = require('../../models/users.model');
+const { getUsersByGroupId, getUserByEmail, getUserByPhone, getUserById, downloadImage } = require('../../models/users.model');
 
 const router = require('express').Router();
 
@@ -169,6 +169,20 @@ router.post('/:groupId/invitation', async (req, res) => {
         res.json({ fatal: error.message })
     }
 });
+
+router.get('/avatar/:userId', async (req, res) => {
+    const { userId } = req.params
+    console.log('en el /avatar')
+    try {
+        const [result] = await downloadImage(userId);
+        console.log(result)
+        const imagePath = result[0];
+        console.log(imagePath)
+        res.json(imagePath)
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+})
 
 router.use('/:groupId/slices', checkGroups, require('./groups/slices'));
 
